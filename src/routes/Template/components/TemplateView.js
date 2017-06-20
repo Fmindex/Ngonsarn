@@ -4,20 +4,19 @@ import DuckImage from '../assets/Duck.jpg'
 import './TemplateView.scss'
 
 class TemplateView extends Component {
+  constructor(props) {
+    super(props);
 
-  renderComponent() {
-    const show = true;
-    if(show) {
-      return (
-        <div>
-          dasdasdsa
-        </div>
-      )
-    } else {
-      return (
-        <p>no</p>
-      )
-    }
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
   }
 
   render() {
@@ -25,15 +24,14 @@ class TemplateView extends Component {
     return (
       <Navbar color="faded" light toggleable>
       <NavbarToggler right onClick={this.toggle} />
-      <NavbarBrand href="/">{show == true ? "reactstrap" : "this is false"}</NavbarBrand>
-      <Collapse navbar>
+      <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Collapse navbar isOpen={this.state.isOpen}>
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink href="/components/"></NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
-            {this.renderComponent()}
+            <NavLink href=".">Github</NavLink>
           </NavItem>
         </Nav>
       </Collapse>
