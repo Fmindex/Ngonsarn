@@ -4,6 +4,7 @@ import Home from './Home'
 import CounterRoute from './Counter'
 import Template from './Template'
 import LandingPage from './LandingPage'
+import SearchPage from './SearchPage'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -15,7 +16,8 @@ export const createRoutes = (store) => ({
   childRoutes : [
     CounterRoute(store),
     Template,
-    LandingPage
+    LandingPage,
+    SearchPage
   ]
 })
 
