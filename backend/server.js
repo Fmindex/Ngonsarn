@@ -4,9 +4,10 @@ var mongojs = require('mongojs');
 var db = mongojs('ngonsarn',['ngonsarn']);
 var bodyParser = require('body-parser');
 
+var job = require('./routes/job.js')
+
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
-
 
 app.post('/ngonsarn/', function(req, res) {
 	console.log("FM " + req.body);
@@ -52,6 +53,8 @@ app.put('/ngonsarn/:id', function(req, res){
 
 		});
 });
+
+app.use('/job', job);
 
 app.listen(3001);
 console.log("Server running on port 3001");
