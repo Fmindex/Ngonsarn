@@ -6,6 +6,10 @@ var bodyParser = require('body-parser');
 
 var job = require('./routes/job.js')
 
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/ngonsarn');
+
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
