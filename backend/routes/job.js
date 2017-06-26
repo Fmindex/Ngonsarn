@@ -4,7 +4,19 @@ const router = express.Router();
 const JobModel = require('../model/job');
 
 router.get('/', function(req, res) {
-  res.send('return list of job')
+  JobModel.find({})
+    .then(data => {
+      res.json({
+        success: true,
+        data: data
+      })
+    })
+    .catch(err => {
+      res.status(500).json({
+        success: false,
+        message: err.message
+      })
+    })
 })
 
 router.get('/:id', function(req, res) {
