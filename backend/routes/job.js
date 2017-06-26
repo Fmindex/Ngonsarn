@@ -16,7 +16,6 @@ router.post('/', function(req, res) {
     name: req.body.name,
     description: req.body.description
   });
-  // console.log(req.body);
   instance.save().then(() => {
     res.json({
       success: true
