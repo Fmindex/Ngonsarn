@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Jumbotron, Button, Container, Form, FormGroup, Label, Input } from 'reactstrap'
+import SideNav, {MenuIcon} from 'react-simple-sidenav'
 import './TemplateView.scss'
 import HeadBackground from '../assets/bg1.jpg'
 
@@ -39,6 +40,22 @@ class TemplateView extends Component {
     };
     return (
     <body>
+        <MenuIcon onClick={() => this.setState({showNav: true})}/>
+          <SideNav
+              showNav        =  {this.state.showNav}
+              onHideNav      =  {() => this.setState({showNav: false})}
+              title          =  "Hello World"
+              items          =  {['home', 'services', 'about', 'contact']}
+              titleStyle     =  {{backgroundColor: '#4CAF50'}}
+              itemStyle      =  {{backgroundColor: '#fff'}}
+              itemHoverStyle =  {{backgroundColor: '#CDDC39'}}
+              />
+
+
+
+
+
+
       <div style={backgroundHead} className="head">
           <Navbar light>
             <NavbarToggler onClick={this.toggleNavbar} className="toggler" />
