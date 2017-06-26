@@ -16,16 +16,18 @@ router.post('/', function(req, res) {
     name: req.body.name,
     description: req.body.description
   });
-  instance.save().then(() => {
-    res.json({
-      success: true
+  instance.save()
+    .then(() => {
+      res.json({
+        success: true
+      })
     })
-  }, (err) => {
-    res.status(500).json({
-      success: false,
-      message: err.message
-    })
-  });
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: err.message
+      })
+    });
 })
 
 router.put('/:id', function(req, res) {
