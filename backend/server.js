@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 
 var job = require('./routes/job.js');
 var ngonsarn = require('./routes/ngonsarn.js');
+var user = require('./routes/user.js');
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -14,6 +15,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
 app.use('/job', job);
+app.use('/user', user);
 app.use('/ngonsarn', ngonsarn);
 
 app.listen(3001);
