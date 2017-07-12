@@ -13,7 +13,7 @@ const responseError  = (res, message) => {
 router.post('/', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if(err) { return responseError(res, err.message); }
-    if(!user) { return responseError(res, 'User not found'); }
+    if(!user) { return responseError(res, info); }
     req.logIn(user, function(err) {
       if(err) { responseError(res, err.message); }
       res.json({

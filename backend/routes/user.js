@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const UserModel = require('../model/user');
 
@@ -37,18 +38,24 @@ router.get('/:name', function(req, res) {
         message: err.message
       })
     })
-})
+});
+
+const hashPassword = (password) => bcrypt.hash(password.toString(), 10);
+
 router.post('/', function(req, res) {
-  var instance = new UserModel({
-    id: new mongoose.Types.ObjectId,
-    username: req.body.username,
-    password: req.body.password,
-    name: {
-      first: req.body.name.first,
-      last: req.body.name.last
-    }
-  });
-  instance.save()
+  hashPassword(req.body.password)
+    .then((hashedPassword) => {
+      const instance = new UserModel({
+        id: new mongoose.Types.ObjectId,
+        username: req.body.username,
+        password: hashedPassword,
+        name: {
+          first: req.body.name.first,
+          last: req.body.name.last
+        }
+      });
+      return instance.save();
+    })
     .then(() => {
       res.json({
         success: true
